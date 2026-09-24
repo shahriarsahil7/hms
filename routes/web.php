@@ -25,7 +25,7 @@ Route::get('/', function () {
 | Guest routes (Authentication module)
 |--------------------------------------------------------------------------
 */
-Route::get('/run-seed-x7k9', function () { if (\App\Models\Patient::count() > 0) { return 'Already seeded — remove this route now.'; } \Illuminate\Support\Facades\Artisan::call('db:seed'); return 'Seeded successfully! Remove this route from routes/web.php now and redeploy.'; }); 
+/*Route::get('/run-seed-x7k9', function () { if (\App\Models\Patient::count() > 0) { return 'Already seeded — remove this route now.'; } \Illuminate\Support\Facades\Artisan::call('db:seed'); return 'Seeded successfully! Remove this route from routes/web.php now and redeploy.'; }); */
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
     Route::post('/login', [AuthenticatedSessionController::class, 'store']);
