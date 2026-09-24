@@ -26,4 +26,4 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction \
 EXPOSE 80
 
 # Run migrations on every deploy, then start Apache in the foreground.
-CMD php artisan migrate --force; apache2-foreground
+CMD php artisan migrate --force; chown -R www-data:www-data storage bootstrap/cache; apache2-foreground
