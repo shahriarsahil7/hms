@@ -147,11 +147,7 @@ return [
 
         'client' => env('REDIS_CLIENT', 'phpredis'),
 
-        'options' => [
-            'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')).'-database-'),
-            'persistent' => env('REDIS_PERSISTENT', false),
-        ],
+        'options' => (function () { if (! extension_loaded('pdo_mysql')) { return []; } $ca = env('MYSQL_ATTR_SSL_CA'); if (! $ca) { return []; } return [ PDO::MYSQL_ATTR_SSL_CA => $ca, PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false, ]; })(),
 
         'default' => [
             'url' => env('REDIS_URL'),
